@@ -82,3 +82,6 @@ end
 
 # Flexible authentication solution for Rails based on Warden
 gem 'devise'
+
+# Seed with Faker
+gem 'faker'
