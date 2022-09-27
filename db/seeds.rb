@@ -10,7 +10,7 @@
 require 'faker'
 
 # Delete everything
-[Artist, User].each(&:delete_all)
+[Artist, User, CreativeWork].each(&:delete_all)
 
 # Create artists
 20.times do
@@ -27,4 +27,15 @@ require 'faker'
     password: 'password',
     password_confirmation: 'password'
   )
+end
+
+Artist.all.each do |artist|
+  5.times do
+    CreativeWork.create!(
+      name: Faker::BossaNova.song,
+      description: Faker::Lorem.paragraphs(number: 1),
+      price: Faker::Number.decimal(l_digits: 2),
+      artist:
+    )
+  end
 end
