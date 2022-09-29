@@ -10,7 +10,7 @@
 require 'faker'
 
 # Delete everything
-[Artist, User, CreativeWork].each(&:delete_all)
+[CreativeWork, Artist, User].each(&:delete_all)
 
 # Create artists
 20.times do
