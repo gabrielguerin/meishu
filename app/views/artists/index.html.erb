@@ -1,12 +1,13 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Artists</h1>
-    <%= link_to 'New artist', new_artist_session_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Nos artistes</h2>
+      <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <% @artists.each do |artist| %>
+        <%= render 'artists/artist_card', artist: artist %>
+      <% end %>
+    </div>
   </div>
-  <div id="artists" class="min-w-full">
-    <%= render @artists %>
-  </div>
-</div>
+</section>
