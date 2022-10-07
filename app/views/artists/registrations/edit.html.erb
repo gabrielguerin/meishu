@@ -1,37 +1,65 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "artists/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
+<% content_for :meta_title, "Modifier mon compte | #{meta_title}" %>
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-20 lg:py-16 lg:grid-cols-12">
+    <div class="w-full place-self-center lg:col-span-6">
+      <div class="p-6 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:max-w-xl sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 sm:text-2xl dark:text-white">
+          Modifier mon compte
+        </h1>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-4 lg:space-y-6" }) do |f| %>
+          <%= render "artists/shared/error_messages", resource: resource %>
+          <form class="space-y-4 lg:space-y-6" action="#">
+            <div>
+              <%= f.label :avatar %><br />
+              <%= f.file_field :avatar %>
+            </div>
+            <div class="flex">
+              <div class="w-1/2 pr-1">
+                <%= f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= f.text_field :first_name, autocomplete: "given-name", type: "text", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white", placeholder: "#{current_artist.first_name}" %>
+              </div>
+              <div class="w-1/2 pl-1">
+                <%= f.label :last_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= f.text_field :last_name, autocomplete: "family-name", type: "text", class: "bbg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white", placeholder: "#{current_artist.last_name}" %>
+              </div>
+            </div>
+            <div>
+              <%= f.label :alternate_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= f.text_field :alternate_name, autofocus: true, autocomplete: "alternate-name", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"#{current_artist.alternate_name}" %>
+            </div>
+            <div>
+              <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"email@#{meta_product_name.downcase}.com" %>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <div>
+              <%= f.label 'Mot de passe', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "••••••••", type: "password", name: "password", id: "password" %>
+              <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Laissez vide si vous ne voulez pas le changer.</p>
+            </div>
+            <div>
+              <%= f.label 'Mot de passe', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= f.password_field :password_confirmation, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "••••••••", type: "password", name: "password", id: "password" %>
+            </div>
+            <div>
+              <%= f.label 'Mot de passe', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "••••••••", type: "password", name: "password", id: "password" %>
+              <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Nous avons besoin de votre mot de passe actuel pour confirmer vos changements.</p>
+            </div>
+            <%= f.submit "Mettre à jour mon profil", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Pas content ?
+              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "font-medium text-red-600 hover:underline dark:text-red-500" %>
+            </p>
+            <%= link_to "Back", :back %>
+          </form>
+        <% end %>
+      </div>
+    </div>
+    <div class="mr-auto place-self-center lg:col-span-6">
+      <img class="hidden mx-auto lg:flex" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg" alt="illustration">
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-<h3>Cancel my account</h3>
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-<%= link_to "Back", :back %>
+</section>
