@@ -15,10 +15,12 @@
         <%= render 'layouts/navbar' %>
       </header>
       <main class="grow">
-        <section class="relative mt-16">
+        <section class="relative">
           <%= yield %>
         </section>
+        <%= render 'layouts/footer' %>
       </main>
     </div>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
   </body>
 </html>
