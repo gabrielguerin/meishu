@@ -3,22 +3,18 @@
     <strong class="block font-medium mb-1">Name:</strong>
     <%= creative_work.name %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Description:</strong>
     <%= creative_work.description %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Price:</strong>
     <%= creative_work.price %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Artist:</strong>
     <%= creative_work.artist_id %>
   </p>
-
   <% if action_name != "show" %>
     <%= link_to "Show this creative work", creative_work, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this creative work', edit_creative_work_path(creative_work), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
